@@ -60,7 +60,28 @@ Please follow these steps to ccontribute to this repository:
 
 ## License
 
-Please check the [license](https://github.com/christopherdbs/psgapi/LICENSE.md) before using the API in your projects.
+This API is open-source with contribution terms and is licensed under the Apache License, Version 2.0.
+Please check the Terms of Use described below and the [License](https://github.com/christopherdbs/psgapi/LICENSE.md) before using the API in your projects.
+
+### Terms of Use
+
+1. You may access and use this API for non-commercial purposes. Please ask for commercial use.
+2. The distribution or the publication of the code source of this API is prohibited **except for contributions to the original project**.
+3. You may modify the source code only to contribute to the original project or for local/private use.
+4. You may contribute to the code via pull requests on GitHub.
+5. You must give appropriate credit to the original author as described in the "Attribution" section below.
+6. **Liability Disclaimer**: The author is not responsible for any damages or issues arising from the use of this API.
+7. **Compliance**: Users must comply with all applicable laws and regulations when using this API.
+8. **Documentation**: Refer to the provided documentation for proper usage and examples.
+9. **Contributions**: By contributing code, you agree that your contributions will be licensed under the same license and terms of use.
+
+By using this API, you agree to these conditions.
+
+### Attribution
+
+When using this API, please provide the following attribution:
+
+"This project uses the PSGAPI, developed by Christopher Dubois © 2025. For more information, visit the official website [psgapi.com](https://psgapi.com) or the original GitHub repository: [https://github.com/christopherdbs/psgapi](https://github.com/christopherdbs/psgapi)"
 
 ## Contact
 
