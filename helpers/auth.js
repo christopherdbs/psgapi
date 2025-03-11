@@ -61,17 +61,18 @@ export const authHelpers = {
   sendMail: async (to, subject, text, html) => {
     let transporter;
     try {
-      transporter = nodemailer.createTransport(
-        nodemailer.createTransport({
-          host: process.env.HOST,
-          port: 465,
-          secure: true,
-          auth: {
-            user: process.env.MAIL,
-            pass: process.env.MAIL_PWD,
-          },
-        })
-      );
+      transporter = nodemailer.createTransport({
+        host: process.env.HOST,
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.API_MAIL,
+          pass: process.env.MAIL_PWD,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      });
     } catch (e) {
       logger.error('Error creating transport: ' + e);
       return {
@@ -79,8 +80,21 @@ export const authHelpers = {
         message: 'Failed to create transport',
       };
     }
+
+    transporter.verify(function (error, success) {
+      if (error) {
+        logger.error('SMTP connection error:', error);
+        return {
+          success: false,
+          message: 'Transport verification failed',
+        };
+      } else {
+        logger.info('SMTP server is ready to take our messages');
+      }
+    });
+
     try {
-      let info = await transporter.sendMail({
+      await transporter.sendMail({
         from: '"PSGAPI" <' + process.env.NOREPLY + '>',
         to: to,
         subject: subject,
@@ -88,6 +102,10 @@ export const authHelpers = {
         html: html,
       });
       logger.info('Token sent by email successfully');
+      return {
+        success: true,
+        message: 'Token sent by email successfully',
+      };
     } catch (e) {
       logger.error('Error sending token by email: ' + e);
       return {
