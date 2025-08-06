@@ -14,7 +14,7 @@ import { authHelpers } from './helpers/auth.js';
 import { User } from './models/User.js';
 import logger from './helpers/logger.js';
 import { Router } from './routes/router.js';
-
+import { limiter } from './helpers/api.js';
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -84,6 +84,7 @@ passport.use(
 );
 
 async function config() {
+  app.use('/api', limiter);
   const baseUrl = ['/api', '/auth'];
   const promises = baseUrl.map(async (url) => {
     const router = await Router(url);
